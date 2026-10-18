@@ -18,7 +18,7 @@ export const site = {
 
 export const contact = {
   email: "harshakar.official@gmail.com",
-  github: "https://github.com/HARSHAKAR-GITHUB",
+  github: "https://github.com/Harshakar-official",
   linkedin: "",
   // optional:
   bugcrowd: "",
