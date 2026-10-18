@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Harsh Akar — Portfolio
 
-## Getting Started
+Personal cybersecurity & application security portfolio: `Curiosity, code, and controlled chaos.`  
+Built with **Next.js 16 (App Router)** + **TypeScript** + **Tailwind CSS v4** + **Framer Motion** + **Lucide Icons** + **Web Audio API**.
 
-First, run the development server:
+---
+
+## 🚀 Run Locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# → http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+To test the production static export locally:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build
+# Creates optimized static output in /out
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🛠️ Features & Sections
 
-To learn more about Next.js, take a look at the following resources:
+- **01 / ABOUT**: Professional identity, corporate VAPT analyst background, and operational methodology.
+- **02 / CREDENTIALS**: 6 industry certifications (CEH, CySA+, Sec+, Malware Analyst, Net+, Linux+) with holographic verified badges and global CTF/offensive labs leaderboard (TryHackMe Top 2%, HackTheBox 814th).
+- **03 / WORK**: Flagship mobile and communication applications with defense-in-depth architecture, plus open-source security utilities (WAFDETECTOR, Encoder_decoder, AutoMailer-Pro).
+- **04 / TOOLKIT**: Multi-category interactive skills accordion covering Web/API pentesting, Mobile instrumentation (Frida, MobSF), Wazuh SIEM operations, and AI security.
+- **05 / LAB**: Playable interactive arcade with Packet Runner (firewall evasion), Cryptographic Memory Decryption (Wordle-style hex cracker with audio synthesis and hint telemetry), and Port Telemetry Radar Scanner.
+- **06 / JOURNEY**: Career roadmap spanning corporate security engineering, Bugcrowd research, and degree specialization.
+- **07 / NOW**: Real-time research radar covering LLM application security, runtime instrumentation, and custom detection engineering.
+- **08 / CONTACT**: Direct email channel (`harshakar.official@gmail.com`) with one-click copy and verified terminal session card.
+- **RESUME DOWNLOAD**: Uiverse.io-inspired animated gem button serving `Harsh_Akar_Resume.pdf`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🌐 GitHub Pages Deployment
 
-## Deploy on Vercel
+Deployment is 100% automated via GitHub Actions on push to `main` ([`.github/workflows/deploy.yml`](.github/workflows/deploy.yml)).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Configured in [`next.config.ts`](next.config.ts) with `output: "export"` and dynamic `basePath` resolution for both root and subpath GitHub Pages URLs.

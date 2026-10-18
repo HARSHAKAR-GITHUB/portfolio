@@ -1,26 +1,302 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --paper: #faf9f5;
+  --ink: #141512;
+  --muted: #65685f;
+  --faint: #8a8d84;
+  --line: #e5e1d6;
+  --card: #ffffff;
+  --accent: #2b4eff;
+  --accent-soft: #e9edff;
+  --accent-ink: #ffffff;
+  --pulse: #4d7c0f;
+  --code-bg: #f1efe7;
+}
+
+.dark {
+  --paper: #0e100e;
+  --ink: #f1f0e9;
+  --muted: #a6aaa1;
+  --faint: #7c807a;
+  --line: #22261f;
+  --card: #151714;
+  --accent: #7d96ff;
+  --accent-soft: #1b2142;
+  --accent-ink: #0e100e;
+  --pulse: #d7ff3e;
+  --code-bg: #191c18;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
+  --color-card: var(--card);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-code: var(--code-bg);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
 }
+
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+.dark ::selection {
+  background: var(--accent);
+  color: #0e100e;
+}
+
+/* thin editorial grid backdrop */
+.bg-blueprint {
+  background-image:
+    linear-gradient(to right, var(--line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, black 30%, transparent 75%);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* focus */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* custom scrollbar subtle */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--paper);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 8px;
+  border: 2px solid var(--paper);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   UIVERSE-INSPIRED MICRO-INTERACTIONS & CYBER ACCENTS
+   ───────────────────────────────────────────────────────────── */
+
+@keyframes radarSweep {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes shimmerSheen {
+  0% {
+    transform: translateX(-150%);
+  }
+  100% {
+    transform: translateX(250%);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.35;
+    filter: drop-shadow(0 0 6px var(--accent));
+  }
+  50% {
+    opacity: 0.85;
+    filter: drop-shadow(0 0 14px var(--accent));
+  }
+}
+
+.radar-sweep-beam {
+  animation: radarSweep 4s linear infinite;
+  transform-origin: center center;
+}
+
+.shimmer-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-button::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.22) 50%,
+    transparent 100%
+  );
+  transform: translateX(-150%) skewX(-20deg);
+  transition: none;
+}
+
+.shimmer-button:hover::after {
+  animation: shimmerSheen 0.85s ease-out;
+}
+
+.crt-scanlines {
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%,
+    rgba(0, 0, 0, 0.35) 50%
+  );
+  background-size: 100% 4px;
+}
+
+.crt-glow {
+  text-shadow: 0 0 8px currentColor;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   UIVERSE.IO PEGTOP GEM STAR ANIMATIONS (by andrew-manzyk)
+   ───────────────────────────────────────────────────────────── */
+
+.pegtop-loader {
+  --fill-color: #7c3aed;
+  --shine-color: rgba(124, 58, 237, 0.45);
+  filter: drop-shadow(0 0 6px var(--shine-color));
+}
+
+.dark .pegtop-loader {
+  --fill-color: #a855f7;
+  --shine-color: rgba(168, 85, 247, 0.6);
+}
+
+.pegtop-loader .pegtop-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.pegtop-loader .pegtop-one {
+  animation: flowe-one 1.4s ease-in-out infinite;
+}
+
+.pegtop-loader .pegtop-two {
+  opacity: 0;
+  animation: flowe-two 1.4s ease-in-out infinite;
+  animation-delay: 0.35s;
+}
+
+.pegtop-loader .pegtop-three {
+  opacity: 0;
+  animation: flowe-three 1.4s ease-in-out infinite;
+  animation-delay: 0.7s;
+}
+
+.pegtop-loader svg g path:first-child {
+  fill: var(--fill-color);
+}
+
+@keyframes flowe-one {
+  0% {
+    transform: scale(0.6) translateY(-22px);
+    opacity: 0;
+  }
+  25% {
+    transform: scale(0.9) translateY(-10px);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05) translateY(0px);
+    opacity: 1;
+  }
+  75% {
+    transform: scale(0.8) translateY(10px);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(0.5) translateY(20px);
+    opacity: 0;
+  }
+}
+
+@keyframes flowe-two {
+  0% {
+    transform: scale(0.5) rotateZ(-12deg) translateY(-22px) translateX(-14px);
+    opacity: 0;
+  }
+  25% {
+    transform: scale(0.85) rotateZ(-6deg) translateY(-10px) translateX(-7px);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1) rotateZ(0deg) translateY(0px) translateX(-3px);
+    opacity: 1;
+  }
+  75% {
+    transform: scale(0.75) rotateZ(6deg) translateY(10px) translateX(0px);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(0.5) rotateZ(12deg) translateY(20px) translateX(7px);
+    opacity: 0;
+  }
+}
+
+@keyframes flowe-three {
+  0% {
+    transform: scale(0.5) rotateZ(12deg) translateY(-22px) translateX(14px);
+    opacity: 0;
+  }
+  25% {
+    transform: scale(0.85) rotateZ(6deg) translateY(-10px) translateX(7px);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1) rotateZ(0deg) translateY(0px) translateX(3px);
+    opacity: 1;
+  }
+  75% {
+    transform: scale(0.75) rotateZ(-6deg) translateY(10px) translateX(0px);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(0.5) rotateZ(-12deg) translateY(20px) translateX(-7px);
+    opacity: 0;
+  }
+}
+
